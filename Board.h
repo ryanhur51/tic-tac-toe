@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BOARD_H
+#define BOARD_H
+
 #include <array>
 
 using namespace std;
@@ -10,7 +12,6 @@ class Board{
         char player;
     public:
         Board();
-
         array<char, 9> getGame(); 
 
         bool getTurn();
@@ -18,4 +19,9 @@ class Board{
 
         char getPlayer();
         void setPlayer();
+
+        char getChar(int i);
+        void setChar(int i, char c);
 };
+
+#endif

@@ -13,28 +13,24 @@ using namespace std;
  */
 
 int main(){
+    int x;
     Board board = Board(); 
-    while (checkWin(board) == true){
+    board.setTurn(true);
+    while (checkWin(board) == false){
+        printBoard(board);
         if (board.getTurn() == true){
-
+            cout << "X turn. Pick an integer" << endl;
+            x = checkAndReturnInput(board);
+            board.setChar(x, 'X');
+            board.setTurn(false);
         } else {
-
+            cout << "O turn. Pick an integer" << endl;
+            x = checkAndReturnInput(board);
+            board.setChar(x, 'O');
+            board.setTurn(true);
         }
     }
+    printBoard(board);
 }
 
-bool checkWin(Board board){
-    if (board.getGame()[0] == board.getGame()[1] == board.getGame()[2] ||
-        board.getGame()[3] == board.getGame()[4] == board.getGame()[5] ||
-        board.getGame()[6] == board.getGame()[7] == board.getGame()[8] ||
-        board.getGame()[0] == board.getGame()[3] == board.getGame()[6] ||
-        board.getGame()[1] == board.getGame()[4] == board.getGame()[7] ||
-        board.getGame()[2] == board.getGame()[5] == board.getGame()[8] ||
-        board.getGame()[0] == board.getGame()[4] == board.getGame()[8] ||
-        board.getGame()[2] == board.getGame()[4] == board.getGame()[6])
-    {
-        return false;
-    } else {
-        return true;
-    }
-}
+
