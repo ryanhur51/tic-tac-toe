@@ -1,4 +1,4 @@
-#include "Board.h"
+#include "../include/Board.h"
 
 Board::Board(){
     char initialBoard[9] = {'0', '1', '2', '3', '4', '5', '6', '7', '8'};

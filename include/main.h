@@ -10,7 +10,6 @@ bool checkWin(Board board);
 void printBoard(Board board);
 int checkAndReturnInput(Board board);
 
-
 bool checkWin(Board board){
     array<char, 9> arr = board.getGame();
     return ((arr[0] == arr[1] && arr[1] == arr[2]) || 

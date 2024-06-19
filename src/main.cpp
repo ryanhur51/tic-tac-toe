@@ -1,6 +1,7 @@
 #include <iostream>
-#include "main.h"
-#include "Board.h"
+
+#include "../include/main.h"
+#include "../include/Board.h"
 
 using namespace std;
 
