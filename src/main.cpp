@@ -1,6 +1,6 @@
 #include <raylib.h>
-#include "Board.h"
-#include "main.h"
+#include "../include/Board.h"
+#include "../include/main.h"
 
 int main()
 {
