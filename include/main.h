@@ -1,5 +1,4 @@
-#ifndef MAIN_H
-#define MAIN_H
+#pragma once
 
 #include "Board.h"
 #include <iostream>
@@ -45,6 +44,4 @@ int checkAndReturnInput(Board board){
         }
     } while (flag);
     return x;
-}   
-
-#endif
+}

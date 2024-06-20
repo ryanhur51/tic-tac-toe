@@ -1,5 +1,4 @@
-#ifndef BOARD_H
-#define BOARD_H
+#pragma once
 
 #include <array>
 
@@ -10,8 +9,11 @@ class Board{
         array<char, 9> game;
         bool turn; //true = X turn. false = O turn. 
         char player;
+
     public:
         Board();
+        void Draw();
+
         array<char, 9> getGame(); 
 
         bool getTurn();
@@ -23,5 +25,3 @@ class Board{
         char getChar(int i);
         void setChar(int i, char c);
 };
-
-#endif

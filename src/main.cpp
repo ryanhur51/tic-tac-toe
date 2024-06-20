@@ -1,9 +1,25 @@
-#include <iostream>
+#include <raylib.h>
+#include "Board.h"
+#include "main.h"
 
-#include "../include/main.h"
-#include "../include/Board.h"
+int main()
+{
+    Color white = Color{252, 252, 252, 252};
 
-using namespace std;
+    const int screenWidth = 800;
+    const int screenHeight = 800; //800px x 800px
+
+    Board board = Board();
+
+    InitWindow(screenWidth, screenHeight, "Tic-Tac-Toe Engine");
+    SetTargetFPS(60);
+
+    while (!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(white);
+        board.Draw();
+
 
 /**
  * 0 | 1 | 2 
@@ -11,7 +27,7 @@ using namespace std;
  * 3 | 4 | 5
  * ---------
  * 6 | 7 | 8
- */
+
 
 int main(){
     int x;
@@ -33,5 +49,13 @@ int main(){
     }
     printBoard(board);
 }
+*/
 
 
+
+        EndDrawing();
+    }
+
+    CloseWindow();
+    return 0;
+}
