@@ -10,7 +10,7 @@ Board::Board(){
 }
 
 void Draw(){
-
+    
 }
 
 array<char, 9> Board::getGame(){
