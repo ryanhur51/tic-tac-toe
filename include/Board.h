@@ -12,7 +12,6 @@ class Board{
 
     public:
         Board();
-        void Draw();
 
         array<char, 9> getGame(); 
 
