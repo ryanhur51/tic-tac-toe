@@ -22,5 +22,5 @@ class Board{
         void setPlayer();
 
         char getChar(int i);
-        void setChar(int i, char c);
+        void setChar(int i, bool turn);
 };

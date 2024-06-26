@@ -2,12 +2,15 @@
 
 #include "Board.h"
 #include <iostream>
+#include <raylib.h>
 
 using namespace std;
 
-bool checkWin(Board board);
-void printBoard(Board board);
-int checkAndReturnInput(Board board);
+bool checkWin(Board board); // Checks if there are any winners in the current state of the board.
+void printBoard(Board board); 
+int checkAndReturnInput(Board board); // Checks if a space on the board is available or not, and returns the index of the board. 
+bool checkPos(int x, int y, Board board); // Checks the mouse coordinates and sees if the spot on the board is empty or not. 
+void switchTurn(Board board);
 
 bool checkWin(Board board){
     array<char, 9> arr = board.getGame();
@@ -44,4 +47,27 @@ int checkAndReturnInput(Board board){
         }
     } while (flag);
     return x;
+}
+
+bool checkPos(int x, int y, Board board){
+    if (x < 250 && y < 250){ // Square 0.
+        if (board.getChar(0) == 'X' || board.getChar(0) == 'O'){
+            return true;
+        } else {
+            board.setChar(0, board.getTurn());
+            switchTurn(board);
+            return true;
+        }
+    } else {
+        return false;
+    }
+    
+}
+
+void switchTurn(Board board){
+    if (board.getTurn()){
+        board.setTurn(false);
+    } else {
+        board.setTurn(true);
+    }
 }

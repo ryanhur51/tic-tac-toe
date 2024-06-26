@@ -23,6 +23,10 @@ void Board::setTurn(bool flag){
 char Board::getChar(int i){
     return game[i];
 }
-void Board::setChar(int i, char c){
-    game[i] = c;
+void Board::setChar(int i, bool turn){
+    if (turn){
+        game[i] = 'X';
+    } else {
+        game[i] = 'O';
+    }
 }
