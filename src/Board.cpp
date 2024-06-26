@@ -1,4 +1,5 @@
 #include "../include/Board.h"
+#include <iostream>
 #include <raylib.h>
 
 Board::Board(){
@@ -29,4 +30,13 @@ void Board::setChar(int i, bool turn){
     } else {
         game[i] = 'O';
     }
+}
+bool Board::isFull(){
+    for (int i = 0; i < 9; i++){
+        if (game[i] != 'X' && game[i] != 'O'){
+            cout << i;
+            return false;
+        }
+    }
+    return true;
 }

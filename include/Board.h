@@ -23,4 +23,5 @@ class Board{
 
         char getChar(int i);
         void setChar(int i, bool turn);
+        bool isFull();
 };
