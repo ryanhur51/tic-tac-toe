@@ -1,13 +1,14 @@
 #pragma once
 
+#include <vector>
 #include "Board.h"
 #include <raylib.h>
 
 using namespace std;
 
 bool checkWin(Board board); // Checks if there are any winners in the current state of the board.
-void checkPos(int x, int y, Board& board, vector<Vector2>& list); // Checks the mouse coordinates and sees if the spot on the board is empty or not. 
-void checkAndPush(Board& board, int i, vector<Vector2>& list, vector<Vector2>& coordinates); //Checks if the spot is empty and pushes one of the coordinates into list.
+void checkPos(int x, int y, Board& board, const vector<Vector2>& list); // Checks the mouse coordinates and sees if the spot on the board is empty or not. 
+void checkAndPush(Board& board, int i, vector<Vector2>& list, const vector<Vector2>& coordinates); //Checks if the spot is empty and pushes one of the coordinates into list.
 void switchTurn(Board& board); //Switches the turn from player to engine or vice versa. 
 
 bool checkWin(Board board){
@@ -22,7 +23,7 @@ bool checkWin(Board board){
             (arr[2] == arr[5] && arr[5] == arr[8]));
 }
 
-void checkPos(int x, int y, Board& board, vector<Vector2>& list, vector<Vector2>& coordinates){
+void checkPos(int x, int y, Board& board, vector<Vector2>& list, const vector<Vector2>& coordinates){
     if (x < 240 && y < 240) { // Square 0.
         checkAndPush(board, 0, list, coordinates);
     } else if (x > 285 && x < 525 && y < 240) { // Square 1.
@@ -45,7 +46,7 @@ void checkPos(int x, int y, Board& board, vector<Vector2>& list, vector<Vector2>
     return;
 }
 
-void checkAndPush(Board& board,  int i, vector<Vector2>& list, vector<Vector2>& coordinates){
+void checkAndPush(Board& board,  int i, vector<Vector2>& list, const vector<Vector2>& coordinates){
     if (board.getChar(i) == 'X' || board.getChar(i) == 'O'){
         return;
     } else {

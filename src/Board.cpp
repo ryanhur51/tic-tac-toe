@@ -1,9 +1,8 @@
 #include "../include/Board.h"
-#include <iostream>
-#include <raylib.h>
 
 Board::Board(){
-    char initialBoard[9] = {'0', '1', '2', '3', '4', '5', '6', '7', '8'};
+    // Chose to do a 1D board because I felt it would have been easier to manage since there are only 9 tiles in a board. 
+    char initialBoard[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
 
     for (int i = 0; i < 9; i++){
         game[i] = initialBoard[i];
@@ -34,7 +33,6 @@ void Board::setChar(int i, bool turn){
 bool Board::isFull(){
     for (int i = 0; i < 9; i++){
         if (game[i] != 'X' && game[i] != 'O'){
-            cout << i;
             return false;
         }
     }
