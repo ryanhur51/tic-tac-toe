@@ -4,8 +4,10 @@
 #include "../include/engine.h"
 #include "../include/main.h"
 
-int main(){
+#include <thread> // For std::this_thread::sleep_for
+#include <chrono> // For std::chrono::milliseconds
 
+int main(){
     // Setting up and initializing the screen.
     const int screenWidth = 800;
     const int screenHeight = 800; 
@@ -39,7 +41,10 @@ int main(){
                 checkPos(x, y, board, xList, coordinates);
             } 
         } else { // Engine's turn.
-
+            int x;
+            minimax(board, x);
+            checkAndPush(board, x, oList, coordinates);
+            this_thread::sleep_for(chrono::milliseconds(500));
         }
 
         // Drawing the 'X' and 'O' images. 
@@ -47,7 +52,7 @@ int main(){
             DrawTextureEx(xImage, xList[i], 0, 0.038, WHITE);
         }
         for (int i = 0; i < (int)oList.size(); i++){
-            DrawTextureEx(oImage, oList[i], 0, 0.1, WHITE);
+            DrawTextureEx(oImage, oList[i], 0, 0.58, WHITE);
         }
 
         BeginDrawing();

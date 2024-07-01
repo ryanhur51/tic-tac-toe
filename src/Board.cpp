@@ -2,7 +2,7 @@
 
 Board::Board(){
     // Chose to do a 1D board because I felt it would have been easier to manage since there are only 9 tiles in a board. 
-    char initialBoard[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+    char initialBoard[9] = {'0', '0', '0', '0', '0', '0', '0', '0', '0'};
 
     for (int i = 0; i < 9; i++){
         game[i] = initialBoard[i];
@@ -32,7 +32,7 @@ void Board::setChar(int i, bool turn){
 }
 bool Board::isFull(){
     for (int i = 0; i < 9; i++){
-        if (game[i] != 'X' && game[i] != 'O'){
+        if (game[i] != 'X' || game[i] != 'O'){
             return false;
         }
     }

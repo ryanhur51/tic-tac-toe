@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "Board.h"
+#include <iostream>
 #include <raylib.h>
 
 using namespace std;
@@ -13,14 +14,26 @@ void switchTurn(Board& board); //Switches the turn from player to engine or vice
 
 bool checkWin(Board board){
     array<char, 9> arr = board.getGame();
-    return ((arr[0] == arr[1] && arr[1] == arr[2]) || 
-            (arr[3] == arr[4] && arr[4] == arr[5]) || 
-            (arr[6] == arr[7] && arr[7] == arr[8]) || 
-            (arr[0] == arr[4] && arr[4] == arr[8]) || 
-            (arr[2] == arr[4] && arr[4] == arr[6]) || 
-            (arr[0] == arr[3] && arr[3] == arr[6]) || 
-            (arr[1] == arr[4] && arr[4] == arr[7]) || 
-            (arr[2] == arr[5] && arr[5] == arr[8]));
+    if ((arr[0] == arr[1] && arr[1] == arr[2] && arr[2] == 'X') || 
+        (arr[3] == arr[4] && arr[4] == arr[5] && arr[5] == 'X') || 
+        (arr[6] == arr[7] && arr[7] == arr[8] && arr[8] == 'X') || 
+        (arr[0] == arr[4] && arr[4] == arr[8] && arr[8] == 'X') || 
+        (arr[2] == arr[4] && arr[4] == arr[6] && arr[6] == 'X') || 
+        (arr[0] == arr[3] && arr[3] == arr[6] && arr[6] == 'X') || 
+        (arr[1] == arr[4] && arr[4] == arr[7] && arr[7] == 'X') || 
+        (arr[2] == arr[5] && arr[5] == arr[8] && arr[8] == 'X') ||
+        (arr[0] == arr[1] && arr[1] == arr[2] && arr[2] == 'O') || 
+        (arr[3] == arr[4] && arr[4] == arr[5] && arr[5] == 'O') || 
+        (arr[6] == arr[7] && arr[7] == arr[8] && arr[8] == 'O') || 
+        (arr[0] == arr[4] && arr[4] == arr[8] && arr[8] == 'O') || 
+        (arr[2] == arr[4] && arr[4] == arr[6] && arr[6] == 'O') || 
+        (arr[0] == arr[3] && arr[3] == arr[6] && arr[6] == 'O') || 
+        (arr[1] == arr[4] && arr[4] == arr[7] && arr[7] == 'O') || 
+        (arr[2] == arr[5] && arr[5] == arr[8] && arr[8] == 'O')){
+            return true;
+        } else {
+            return false;
+        }
 }
 
 void checkPos(int x, int y, Board& board, vector<Vector2>& list, const vector<Vector2>& coordinates){
