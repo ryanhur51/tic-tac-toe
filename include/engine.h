@@ -10,14 +10,13 @@
 using namespace std;
 
 // Minimax functions
-// Used the psuedocode from this YouTube video: https://www.youtube.com/watch?v=SLgZhpDsrfc
 
 bool terminal(Board board); // Determines if the board is full or if there was a winner.
 int value(Board board); // Returns a value (between -1 and 1) given a terminal board. 
 vector<int> actions(Board board); // Returns a vector of available squares. 
-Board result(Board board, int x);
-bool player(Board board); // true -> X turn. false -> O turn. 
-int minimax(Board board, int &x);
+Board result(Board board, int x, bool turn); // Returns a board after a specified turn.
+int findBestMove(Board board);  
+int minimax(Board board, int depth, bool isMax);
 
 
 bool terminal(Board board){
@@ -59,65 +58,52 @@ vector<int> actions(Board board){
     for (int i = 0; i < 9; i++){
         if (board.getChar(i) == '0'){
             action.push_back(i);
-            cout << i << endl;
         }
     }
     return action;
 }
 
-Board result(Board board, int x){
-    board.setChar(x, player(board));
+Board result(Board board, int x, bool turn){
+    board.setChar(x, turn);
     return board;
 }
 
-bool player(Board board){
-    int xCount = 0, oCount = 0;
-    array<char, 9> arr = board.getGame();
-    for (int i = 0; i < 9; i++){
-        if (arr[i] == 'X'){
-            xCount++;
-        } else if (arr[i] == 'O'){
-            oCount++;
+int findBestMove(Board board){
+    vector<int> moves = actions(board);
+    int bestScore = -1000;
+    int bestMove;
+
+    for (int i = 0; i < (int)moves.size(); i++){
+        int score = minimax(result(board, moves[i], true), 0, false); // could be an error
+        if (score >= bestScore){
+            bestScore = score;
+            bestMove = moves[i];
         }
     }
-
-    if (xCount == oCount){
-        return true;
-    } else {
-        return false;
-    }
+    return bestMove;
 }
 
-int minimax(Board board, int &x){
+int minimax(Board board, int depth, bool isMax){
     if (terminal(board)){
         return value(board);
     } 
 
-    if (player(board) == false){
-        int val = -1000;
+    if (isMax){ //Max-er (Engine)
+        int bestScore = -1000;
         vector<int> moves = actions(board);
         for (int i = 0; i < (int)moves.size(); i++){
-            if (val < minimax(result(board, moves[i]), x)){
-                x = moves[i];
-                val = minimax(result(board, moves[i]), x);
-              
-            }
+            int score = minimax(result(board, moves[i], true), depth+1, false);
+            bestScore = max(score-depth, bestScore);
         }
-        return val;
-    } else {
-        int val = 1000;
+        return bestScore;
+    } else { // Min-er (Player)
+        int bestScore = 1000;
         vector<int> moves = actions(board);
         for (int i = 0; i < (int)moves.size(); i++){
-            //val = max(val, minimax(result(board, moves[i])));
-            if (val > minimax(result(board, moves[i]), x)){
-                x = moves[i];
-                val = minimax(result(board, moves[i]), x);
-                
-            }
+            int score = minimax(result(board, moves[i], false), depth+1, true);
+            bestScore = min(score+depth, bestScore);
         }
-        return val;
+        return bestScore;
     }
-    cout << "error";
-    return -1;
 }
 

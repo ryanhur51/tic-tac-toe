@@ -34,17 +34,16 @@ int main(){
     while (!WindowShouldClose()){
         DrawTextureEx(boardImage, boardPos, 0, 1.5, WHITE); // Draw the board.
 
-        if (board.getTurn() == true){ //Player's turn.
+        if (board.getTurn() == true){ //Engine's turn
+            int x = findBestMove(board);
+            checkAndPush(board, x, xList, coordinates);
+        } else { // Player's turn.
             if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){ 
                 int x = GetMouseX(); 
                 int y = GetMouseY();
-                checkPos(x, y, board, xList, coordinates);
+                checkPos(x, y, board, oList, coordinates);
             } 
-        } else { // Engine's turn.
-            int x;
-            minimax(board, x);
-            checkAndPush(board, x, oList, coordinates);
-            this_thread::sleep_for(chrono::milliseconds(500));
+            
         }
 
         // Drawing the 'X' and 'O' images. 
